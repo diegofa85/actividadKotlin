@@ -28,10 +28,11 @@ fun main() {
         }
     }
 
-    if (resultado == nombre1list.size) {
-        println("¿Las palabras $nombre1 y $nombre2 son un anagrama? = true")
-    } else {
-        println("¿Las palabras $nombre1 y $nombre2 son un anagrama? = false")
-    }
+    println("¿Las palabras $nombre1 y $nombre2 son un anagrama?")
 
+    if (resultado == nombre1list.size) {
+        println("true")
+    } else {
+        println("false")
+    }
 }
