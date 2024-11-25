@@ -2,37 +2,99 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
-    println("Introduzca una palabra:")
-    var nombre1 = readLine()!!
-    println("Introduzca una palabra:")
-    var nombre2 = readLine()!!
+    var expresion = readLine()!!
 
-    val nombre1list: MutableList<Char> = mutableListOf()
-    val nombre2list: MutableList<Char> = mutableListOf()
+    val expresionList: MutableList<Char> = mutableListOf()
+    var p: Char = 'n'
+    val expresionList2: MutableList<Char> = mutableListOf()
 
-    for(letra in nombre1) {
-        nombre1list.add(letra)
-    }
+    for (posicion in expresion) {
 
-    for(letra in nombre2) {
-        nombre2list.add(letra)
-    }
-
-    var contador: Int = 1
-    var resultado: Int = 0
-
-    for (posicion in nombre1list.indices){
-        if(nombre1list.get(posicion) == nombre2list.get(nombre2list.size - contador)) {
-            contador = contador + 1
-            resultado = resultado + 1
+        if (posicion.equals('(')
+            || posicion.equals(')')
+            || posicion.equals('[')
+            || posicion.equals(']')
+            || posicion.equals('{')
+            || posicion.equals('}')
+        ) {
+            expresionList2.add(posicion)
         }
     }
 
-    println("¿Las palabras $nombre1 y $nombre2 son un anagrama?")
-
-    if (resultado == nombre1list.size) {
-        println("true")
-    } else {
-        println("false")
+    for (posicion in expresionList2.indices){
+        if(expresionList2.get(posicion).equals(')')) {
+            if(expresionList2.get(posicion - 1).equals('(')) {
+                expresionList2.removeAt(posicion)
+                expresionList2.removeAt(posicion - 1)
+            } else {
+                println("$expresion ¿está balanceada?")
+                println("false")
+                break
+            }
+        }
+        if(expresionList2.get(posicion).equals(']')) {
+            if(expresionList2.get(posicion - 1).equals('[')) {
+                expresionList2.removeAt(posicion)
+                expresionList2.removeAt(posicion - 1)
+            } else {
+                println("$expresion ¿está balanceada?")
+                println("false")
+                break
+            }
+        }
+        if(expresionList2.get(posicion).equals('{')) {
+            if(expresionList2.get(posicion - 1).equals('}')) {
+                expresionList2.removeAt(posicion)
+                expresionList2.removeAt(posicion - 1)
+            } else {
+                println("$expresion ¿está balanceada?")
+                println("false")
+                break
+            }
+        }
     }
+
+
+
+    /*var contador: Int = 1
+    var resultado: Int = 0
+
+    for (posicion in expresionList.indices){
+
+        if (expresionList.get(posicion) == '(') {
+            p = '('
+        }
+
+        if (expresionList.get(posicion) == '[') {
+            p = '['
+        }
+
+        if (expresionList.get(posicion) == '{') {
+            p = '{'
+        }
+
+        if (expresionList.get(posicion) != ')' && p.equals('(')) {
+            if (expresionList.get(posicion).equals('}') || expresionList.get(posicion).equals(']')) {
+                println("$expresion ¿está balanceada?")
+                println("false")
+                break
+            }
+        }
+
+        if (expresionList.get(posicion) != ']' && p.equals('[')) {
+            if (expresionList.get(posicion).equals('}') || expresionList.get(posicion).equals(')')) {
+                println("$expresion ¿está balanceada?")
+                println("false")
+                break
+            }
+        }
+
+        if (expresionList.get(posicion) != '}' && p.equals('{')) {
+            if (expresionList.get(posicion).equals(')') || expresionList.get(posicion).equals(']')) {
+                println("$expresion ¿está balanceada?")
+                println("false")
+                break
+            }
+        }
+    }*/
 }
