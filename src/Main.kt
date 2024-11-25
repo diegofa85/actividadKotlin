@@ -2,16 +2,36 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
-    for (x in 1 .. 100) {
+    println("Introduzca una palabra:")
+    var nombre1 = readLine()!!
+    println("Introduzca una palabra:")
+    var nombre2 = readLine()!!
 
-        if (x % 3 == 0 && x % 5 == 0) {
-            println("triqui")
-        } else if (x % 3 == 0) {
-            println("tri")
-        } else if (x % 5 == 0) {
-            println("qui")
-        } else {
-            println(x)
+    val nombre1list: MutableList<Char> = mutableListOf()
+    val nombre2list: MutableList<Char> = mutableListOf()
+
+    for(letra in nombre1) {
+        nombre1list.add(letra)
+    }
+
+    for(letra in nombre2) {
+        nombre2list.add(letra)
+    }
+
+    var contador: Int = 1
+    var resultado: Int = 0
+
+    for (posicion in nombre1list.indices){
+        if(nombre1list.get(posicion) == nombre2list.get(nombre2list.size - contador)) {
+            contador = contador + 1
+            resultado = resultado + 1
         }
     }
+
+    if (resultado == nombre1list.size) {
+        println("¿Las palabras $nombre1 y $nombre2 son un anagrama? = true")
+    } else {
+        println("¿Las palabras $nombre1 y $nombre2 son un anagrama? = false")
+    }
+
 }
