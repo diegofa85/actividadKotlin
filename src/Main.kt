@@ -2,99 +2,62 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
+    println("Introduce la Expresión:")
     var expresion = readLine()!!
-
     val expresionList: MutableList<Char> = mutableListOf()
-    var p: Char = 'n'
-    val expresionList2: MutableList<Char> = mutableListOf()
 
     for (posicion in expresion) {
-
-        if (posicion.equals('(')
-            || posicion.equals(')')
-            || posicion.equals('[')
-            || posicion.equals(']')
-            || posicion.equals('{')
-            || posicion.equals('}')
-        ) {
-            expresionList2.add(posicion)
+        if (posicion == '('
+            || posicion == ')'
+            || posicion == '['
+            || posicion == ']'
+            || posicion == '{'
+            || posicion == '}') {
+            expresionList.add(posicion)
         }
     }
 
-    for (posicion in expresionList2.indices){
-        if(expresionList2.get(posicion).equals(')')) {
-            if(expresionList2.get(posicion - 1).equals('(')) {
-                expresionList2.removeAt(posicion)
-                expresionList2.removeAt(posicion - 1)
+    var i = 0
+    while (i < expresionList.size) {
+        if (expresionList[i] == ')') {
+            if (i > 0 && expresionList[i - 1] == '(') {
+                expresionList.removeAt(i)
+                expresionList.removeAt(i - 1)
+                i = i - 1
             } else {
                 println("$expresion ¿está balanceada?")
                 println("false")
-                break
+                return
             }
-        }
-        if(expresionList2.get(posicion).equals(']')) {
-            if(expresionList2.get(posicion - 1).equals('[')) {
-                expresionList2.removeAt(posicion)
-                expresionList2.removeAt(posicion - 1)
+        } else if (expresionList[i] == ']') {
+            if (i > 0 && expresionList[i - 1] == '[') {
+                expresionList.removeAt(i)
+                expresionList.removeAt(i - 1)
+                i = i - 1
             } else {
                 println("$expresion ¿está balanceada?")
                 println("false")
-                break
+                return
             }
-        }
-        if(expresionList2.get(posicion).equals('{')) {
-            if(expresionList2.get(posicion - 1).equals('}')) {
-                expresionList2.removeAt(posicion)
-                expresionList2.removeAt(posicion - 1)
+        } else if (expresionList[i] == '}') {
+            if (i > 0 && expresionList[i - 1] == '{') {
+                expresionList.removeAt(i)
+                expresionList.removeAt(i - 1)
+                i = i - 1
             } else {
                 println("$expresion ¿está balanceada?")
                 println("false")
-                break
+                return
             }
+        } else {
+            i++
         }
     }
 
-
-
-    /*var contador: Int = 1
-    var resultado: Int = 0
-
-    for (posicion in expresionList.indices){
-
-        if (expresionList.get(posicion) == '(') {
-            p = '('
-        }
-
-        if (expresionList.get(posicion) == '[') {
-            p = '['
-        }
-
-        if (expresionList.get(posicion) == '{') {
-            p = '{'
-        }
-
-        if (expresionList.get(posicion) != ')' && p.equals('(')) {
-            if (expresionList.get(posicion).equals('}') || expresionList.get(posicion).equals(']')) {
-                println("$expresion ¿está balanceada?")
-                println("false")
-                break
-            }
-        }
-
-        if (expresionList.get(posicion) != ']' && p.equals('[')) {
-            if (expresionList.get(posicion).equals('}') || expresionList.get(posicion).equals(')')) {
-                println("$expresion ¿está balanceada?")
-                println("false")
-                break
-            }
-        }
-
-        if (expresionList.get(posicion) != '}' && p.equals('{')) {
-            if (expresionList.get(posicion).equals(')') || expresionList.get(posicion).equals(']')) {
-                println("$expresion ¿está balanceada?")
-                println("false")
-                break
-            }
-        }
-    }*/
+    println("$expresion ¿está balanceada?")
+    if (expresionList.isEmpty()) {
+        println("true")
+    } else {
+        println("false")
+    }
 }
