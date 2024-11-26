@@ -2,7 +2,7 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
-    println("Introduce la Expresión:")
+    println("Introduce la Expresión: ")
     var expresion = readLine()!!
     val expresionList: MutableList<Char> = mutableListOf()
 
