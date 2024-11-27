@@ -1,60 +1,50 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+//TIP To <b>Run</b> code, press <shortcut actioId="Run"/> or
+// click the <ico src="AllIcos.Actios.Execute"/> ico in the gutter.
 fun main() {
 
-    val acciones = arrayOf("correr", "saltar", "correr", "saltar", "correr", "saltar", "correr")
-    var pista: String = "_|_|_"
-    var pistaA: MutableList<Char> = mutableListOf()
+    var tablero = arrayOf(
+    arrayOf("X", "O", "X"),
+    arrayOf("X", "X", "O"),
+    arrayOf("X", "X", "X")
+    )
 
-    for (posicion in pista) {
-        pistaA.add(posicion)
-    }
+    var x: Int = 0
+    var o: Int = 0
 
-    var r: Boolean = true
-    var i: Int = 0
-    var a: Int = 0
+    var juego: MutableList<String> = mutableListOf()
 
-    if (acciones.size < pistaA.size) {
-        val s: Int = pistaA.size - acciones.size
-        a = pistaA.size - s
-        while(a < pistaA.size) {
-            pistaA.set(a,'?');
-            a++
-            r = false
+    for (i in tablero) {
+        for (j in i) {
+            juego.add(j);
+            if (j.equals("X")) {
+                x = x + 1
+            } else if (j.equals("O")) {
+                o = o + 1
+            }
         }
     }
 
-    if (pistaA.size < acciones.size) {
-        val s: Int = acciones.size - pistaA.size
-        a = acciones.size - s
-        while(a < acciones.size) {
-            pistaA.add('?');
-            a++
-            r = false
-        }
-    }
-
-    while (i < acciones.size) {
-        if (acciones[i].equals("correr") && pistaA[i] == '_') {
-
-        } else if (acciones[i].equals("correr") && pistaA[i] == '|') {
-            pistaA.set(i,'/');
-            r = false
-        } else if (acciones[i].equals("saltar") && pistaA[i] == '_') {
-            pistaA.set(i,'x');
-            r = false
-        } else if (acciones[i].equals("saltar") && pistaA[i] == '|') {
-
+    if ((x - o) >= 2) {
+        println("NULL")
+    } else if ((o - x) >= 2) {
+        println("NULL")
+    } else {
+        if(juego[0].equals(juego[1]) && juego[0].equals(juego[2]) && !juego[0].equals("")) {
+            println(juego[0])
+        } else if(juego[0].equals(juego[4]) && juego[0].equals(juego[8]) && !juego[0].equals("")) {
+            println(juego[0])
+        } else if(juego[0].equals(juego[3]) && juego[0].equals(juego[6]) && !juego[0].equals("")) {
+            println(juego[0])
+        } else if(juego[1].equals(juego[4]) && juego[1].equals(juego[7]) && !juego[1].equals("")) {
+            println(juego[1])
+        } else if(juego[2].equals(juego[4]) && juego[1].equals(juego[6]) && !juego[2].equals("")) {
+            println(juego[2])
+        } else if(juego[3].equals(juego[4]) && juego[3].equals(juego[5]) && !juego[3].equals("")) {
+            println(juego[3])
+        } else if(juego[6].equals(juego[7]) && juego[6].equals(juego[8]) && !juego[6].equals("")) {
+            println(juego[6])
         } else {
-            pistaA.set(i,'?');
-            r = false
+            println("EMPATE")
         }
-        i++
     }
-
-    for (posicion in pistaA.indices){
-        print(pistaA.get(posicion))
-    }
-    println(" ")
-    println(r)
 }
