@@ -2,7 +2,7 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
-    val acciones = arrayOf("correr", "saltar", "correr", "saltar", "correr")
+    val acciones = arrayOf("correr", "saltar", "correr", "saltar", "correr", "saltar", "correr")
     var pista: String = "_|_|_"
     var pistaA: MutableList<Char> = mutableListOf()
 
@@ -28,7 +28,7 @@ fun main() {
         val s: Int = acciones.size - pistaA.size
         a = acciones.size - s
         while(a < acciones.size) {
-            pistaA.set(a,'?');
+            pistaA.add('?');
             a++
             r = false
         }
